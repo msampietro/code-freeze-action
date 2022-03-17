@@ -1,16 +1,15 @@
-name: Code Freeze GitHub Action
+name: Code Freeze
 on:
   pull_request:
     types: [opened, reopened, labeled, synchronize]
 jobs:
-  code-freeze:
+  check-freeze:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code-freeze branch
         uses: actions/checkout@v2
         with:
           ref: code-freeze
-      - run: echo "Analyzing last commit message ${{ github.event.head_commit.message }}."
       - name: Execute freeze
-        run: exit 1
         if: github.event.head_commit.message == '@code-freeze-start'
+        run: exit 1
