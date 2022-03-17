@@ -4,12 +4,13 @@ on:
     types: [opened, reopened, labeled, synchronize]
 jobs:
   code-freeze:
-    runs-on: jdk11
+    runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
+      - name: Check out code-freeze branch
         uses: actions/checkout@v2
         with:
           ref: code-freeze
-      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - run: echo "Last commit message ${{ github.event.head_commit.message }}."
-      - run: echo "This job's status is ${{ job.status }}."
+      - name: Execute freeze
+        uses: actions/github-script@v6
+        with:
+          script: console.log(github.event.head_commit.message)
