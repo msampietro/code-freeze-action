@@ -11,7 +11,7 @@ jobs:
         with:
           ref: code-freeze
       - name: Get last commit meesage
-        run: echo "${{ github.event.head_commit.message }}"
+        run: echo "${{ github.repository }}"
       - name: Execute freeze
         if: github.event.head_commit.message == '@code-freeze-start'
         run: exit 1
