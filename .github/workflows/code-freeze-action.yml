@@ -11,3 +11,4 @@ jobs:
         with:
           ref: code-freeze
         if: github.event.head_commit.message == '@code-freeze-start'
+        run: exit 1
