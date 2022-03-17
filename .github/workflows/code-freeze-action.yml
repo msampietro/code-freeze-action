@@ -10,8 +10,4 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: code-freeze
-      - name: Get last commit meesage
-        run: echo "${{ github.event.head_commit }}"
-      - name: Execute freeze
         if: github.event.head_commit.message == '@code-freeze-start'
-        run: exit 1
